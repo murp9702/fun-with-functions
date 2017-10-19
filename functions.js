@@ -37,45 +37,67 @@ function arrayIntegerNotThere(arr) {
     }
   }
 }
-
-
  // console.log(arrayIntegerNotThere([3,4,5]));
+
+
+
+
 
 // 4. Write a function which takes an array of integers and returns an array with any duplicate integers removed.
 // [1,1,2,3,1,2,3] -> [1,2,3]
 // [1,4,4,4,2,2,4,4,4] -> [1,4,2]
 //
-var arrayDuplicateIntegers = [1,1,2,3,1,2,3];
-var integerNoDuplicates = [];
+var arrayDuplicateIntegers = [1,4,4,4,2,2,4,4,4];
+var noDuplicateIntegers = [];
 
-function firstLoop (arr) {
-  integerNoDuplicates.push(arrayDuplicateIntegers[0]);
+function loopOriginalArray (arr) {
+  noDuplicateIntegers.push(arrayDuplicateIntegers[0]);
   for (var i=0; i < arrayDuplicateIntegers.length; i++) {
-    compareLoop(arrayDuplicateIntegers[i]);
-  }
-}
-
-function compareLoop(int) {
-  for (var i=0; i < integerNoDuplicates.length; i++) {
-    if (integerNoDuplicates.indexOf(int) === -1) {
-      integerNoDuplicates.push(int);
+    if (noDuplicateIntegers.indexOf(arrayDuplicateIntegers[i]) === -1) {
+      noDuplicateIntegers.push(arrayDuplicateIntegers[i]);
     }
   }
 }
 
-firstLoop(arrayDuplicateIntegers);
-console.log(integerNoDuplicates);
-// for (var i=0; i < arrayDuplicateIntegers; i++) {
-//   if (arrayDuplicateIntegers[i] !== integerNoDuplicates[i]) {
-//       integerNoDuplicates.push(arrayDuplicateIntegers[i]);
-//     }
-//
-// }
-// console.log(integerNoDuplicates);
+loopOriginalArray(arrayDuplicateIntegers);
+// console.log(noDuplicateIntegers);
+
+
+
+
+
 // 5. Write function that translates a text to Pig Latin, and another that translates back. English is translated to Pig Latin by taking the first letter of every word, moving it to the end of the word and adding "ay".
 //
 // "The quick brown fox" -> "Hetay uickqay rownbay oxfay".
 //
+var originalEnglishString = "The quick brown fox";
+var originalEnglishStringToArray = originalEnglishString.toLowerCase().split(' ');
+var newStringToPigLatin = [];
+function toPigLatin(arr) {
+  for (var i=0; i < originalEnglishStringToArray.length; i++) {
+
+    var pigString = arr[i].substring(1) + arr[i].substring(0,1) + 'ay';
+    newStringToPigLatin.push(pigString);
+
+
+  }
+}
+toPigLatin(originalEnglishStringToArray);
+// console.log(newStringToPigLatin.join(' '));
+
+var pigLatinToEnglish = 'hetay uickqay rownbay oxfay';
+var pigLatinStringToArray = pigLatinToEnglish.toLowerCase().split(' ');
+var newStringToEnglish = [];
+function toEnglish(arr) {
+  for (var i=0; i < pigLatinStringToArray.length; i++) {
+
+    var englishStringFinish = arr[i].substring(arr[i].length -3, arr[i].length -2) + arr[i].substring(0,arr[i].length -3);
+    newStringToEnglish.push(englishStringFinish);
+  }
+}
+toEnglish(pigLatinStringToArray);
+console.log(newStringToEnglish.join(' '));
+
 // (source: https://adriann.github.io/programming_problems.html)
 //
 // 6. Write a function which takes in two arrays and determines if they contain the same number of the same values.
