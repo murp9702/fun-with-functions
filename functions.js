@@ -127,12 +127,28 @@ toEnglish(pigLatinStringToArray);
 // ["a", "c", "b"], ["a", "b", "c"] -> true
 // [1, 1, 1], [1, 1, 1, 1] -> false
 //
-var array1ToPass = [2, 3, 4];
-var array2ToPass = [1, 2, 3, 7];
-var check = array1ToPass.map(function(element){
-  return array2ToPass.includes(element);
-});
+var array1ToPass = [1, 1, 1];
+var array2ToPass = [1, 1, 1, 1];
 
+function loopCheck(arr1, arr2) {
+  if(arr1.length === arr2.length) {
+    var check = arr1.map(function(element){
+      return arr2.includes(element);});
+   for (var i=0; i < check.length; i++) {
+     if (check[i] === false) {
+       return false;
+      }
+    }
+  }
+  else {
+    return false;
+  }
+  return true;
+}
+
+
+
+console.log(loopCheck(array1ToPass, array2ToPass));
 // console.log(arr1Loop(array1ToPass, array2ToPass));
 
 var array1ToPass = [];
@@ -313,7 +329,7 @@ function randomNumberConversion() {
     }
   }
   randomNumber.join('');
-  console.log(randomNumber)
+  console.log(randomNumber);
   return Number(randomNumber);
 
 }
@@ -389,6 +405,20 @@ function capitalizeFirst(str) {
 //
 // 14. Write a function which takes two dates as strings in the format 'YYYY/MM/DD' and returns the number of days between them.
 // '1998/01/24', '1999/01/25' -> 366
+var firstDate = '1998/01/24';
+var secondDate = '1999/01/25';
+function dateParse(str) {
+  var ymd = str.split('/');
+  var date = new Date(ymd[0], ymd[1]-1, ymd[2]);
+  var milliseconds = date.valueOf();
+  return milliseconds;
+}
+function dateDiff(first, second){
+  return Math.round((second-first)/(86400000));
+}
+
+// console.log(dateDiff(dateParse(firstDate), dateParse(secondDate)));
+
 //
 // 15. Write a function called `add` that adds two numbers together, and returns the result. The function must be defined such that it can be called in two different ways to achieve the same result. See the example below:
 //
@@ -397,9 +427,25 @@ function capitalizeFirst(str) {
 // seven = add(5)(2) // also returns 7
 // ```
 //
+function add(x) {
+  return function (y) {
+    return x + y;
+  };
+}
+var addEachOther = add(5);
+// console.log(addEachOther(2))
+// console.log(add(5)(2));
+
+
+
+
+
+
+
+
 // 16. Write a function which takes one argument, and returns true if that argument is a whole number (a non-negative integer, e.g. 0, 1, 5, 21, 1000, etc). If the argument is negative, is a decimal number, or is not a number at all, return false.
 function wholeNumberCheck(int) {
-  if (int >= 0 && int % 1 === 0 && typeof int === 'number') {
+  if ((int >= 0) && (int % 1 === 0) && (typeof int === 'number')) {
   return true;
   } else {
   return false;
@@ -418,4 +464,4 @@ function randomInteger() {
   return Math.ceil(Math.random()*10);
 }
 
-console.log(randomInteger());
+// console.log(randomInteger());
