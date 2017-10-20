@@ -228,7 +228,7 @@ function sortLists(arr1, arr2) {
 }
 
 
-console.log(sortLists([1,2,5,6,9], [3,4,5,10]));
+// console.log(sortLists([1,2,5,6,9], [3,4,5,10]));
 
 
 
@@ -251,12 +251,35 @@ console.log(sortLists([1,2,5,6,9], [3,4,5,10]));
 // 10. Write a function which accepts two arrays as input. The function should remove all the items from the shorter array, and add them to the end of the longer array. If both arrays are the same length, the function should do nothing. This function does not need to return a value.
 //
 // ```javascript
-// var numbers = ['four', 'eleven']
-// var animals = ['cat', 'bat', 'dolphin']
+var numbers = ['four', 'eleven'];
+var animals = ['cat', 'bat', 'dolphin'];
 // arrayTransfer(numbers, animals)
-// console.log(numbers) // []
-// console.log(animals) // ['cat', 'bat', 'dolphin', 'four', 'eleven']
+ // ['cat', 'bat', 'dolphin', 'four', 'eleven']
 //
+
+function arrayTransfer (arr1, arr2) {
+  var newArray;
+  if (arr1.length < arr2.length) {
+    newArray = arr1.splice(0);
+    loopForTransfer(newArray, arr2);
+  }
+  else if (arr1.length > arr2.length) {
+    newArray = arr2.splice(0);
+    loopForTransfer(newArray, arr1);
+  } else {
+    return;
+  }
+}
+function loopForTransfer(smaller, larger) {
+  for (var i=0; i < smaller.length; i++) {
+    larger.push(smaller[i]);
+  }
+}
+arrayTransfer(numbers, animals);
+// console.log(numbers, animals);
+
+
+
 
 
 
@@ -270,15 +293,98 @@ console.log(sortLists([1,2,5,6,9], [3,4,5,10]));
 // ```
 //
 // 11. Write a function that uses `Math.random()` to generate a random number between 0-1. Replace all the 3's with 8's, and replace all the 7's with 1's, then return this number. Note that this function should return a `number`, not a `string`.
+
+// generate random
+// convert to array
+// loop over contents of array
+//   change 3 to 8 and 7 to 1 with .slice()
+// .join() to create string, Number() to convert to number
+//
+function randomNumberConversion() {
+  var randomNumber = Math.random().toString().split('');
+  for ( var i=0; i < randomNumber; i++ ) {
+    if (randomNumber[i] === 3) {
+    randomNumber.splice(i,1,'8');
+      console.log(splicedNumber);
+    }
+    else if (randomNumber[i] === 7) {
+    randomNumber.splice(i,1,'1');
+      console.log(splicedNumber);
+    }
+  }
+  randomNumber.join('');
+  console.log(randomNumber)
+  return Number(randomNumber);
+
+}
+
+// randomNumberConversion();
+
+
+// console.log(randomNumberConversion());
+
+
+
+
+
+
+
+
 //
 // 12. Write a function which accepts a sentence as a string, and returns the longest word in that sentence.
 //
 // 'I ate toast for breakfast' -> 'breakfast'
+
+// string to array
+// sort array
+// array to string
+// return
 //
-//
+
+function longestWord(str) {
+  return str.split(' ').sort(function(a,b){
+    return a.length - b.length;}).pop();
+}
+// console.log(longestWord('I ate toast for breakfast'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 13. Write a function which accepts a sentence as a string. Capitalize the first letter of each word of the string, and return that.
 //
 // 'I ate toast for breakfast' -> 'I Ate Toast For Breakfast'
+// string to array
+// loop over array
+// slice first letter, get charCode of slice, subtract 32,concat to rest of word
+
+function capitalizeFirst(str) {
+  var splitString = str.split(' ');
+  var capitalWord = [];
+  for (var i=0; i < splitString.length; i++) {
+    var firstLetterCode = splitString[i].charCodeAt(0);
+    if (firstLetterCode > 90) {
+      var capitalLetter = firstLetterCode - 32;
+      capitalWord.push(String.fromCharCode(capitalLetter) + splitString[i].substring(1));
+    } else {
+      capitalWord.push(splitString[i]);
+    }
+  } return capitalWord.join(' ');
+}
+
+// console.log(capitalizeFirst('I ate toast for breakfast'));
+
+
+
 //
 //
 // 14. Write a function which takes two dates as strings in the format 'YYYY/MM/DD' and returns the number of days between them.
@@ -292,7 +398,24 @@ console.log(sortLists([1,2,5,6,9], [3,4,5,10]));
 // ```
 //
 // 16. Write a function which takes one argument, and returns true if that argument is a whole number (a non-negative integer, e.g. 0, 1, 5, 21, 1000, etc). If the argument is negative, is a decimal number, or is not a number at all, return false.
+function wholeNumberCheck(int) {
+  if (int >= 0 && int % 1 === 0 && typeof int === 'number') {
+  return true;
+  } else {
+  return false;
+  }
+}
+
+// console.log(wholeNumberCheck(3));
+// console.log(wholeNumberCheck(-3));
+// console.log(wholeNumberCheck(3.2));
+// console.log(wholeNumberCheck('bob'));
+
+
 //
 // 17. Write a function which returns a random integer from 1 to 10.
-//
-//
+function randomInteger() {
+  return Math.ceil(Math.random()*10);
+}
+
+console.log(randomInteger());
