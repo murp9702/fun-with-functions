@@ -396,14 +396,18 @@ function dateDiff(first, second){
 // seven = add(5)(2) // also returns 7
 // ```
 //
-function add(x) {
-  return function (y) {
-    return x + y;
-  };
-}
-var addEachOther = add(5);
-// console.log(addEachOther(2))
-// console.log(add(5)(2));
+function add(x, y) {
+  if (arguments.length === 1) {
+    return function (y) {
+      return x + y;
+    };
+  }
+  return x + y;
+};
+
+var addEachOther = add(5,2);
+console.log(addEachOther)
+console.log(add(5)(2));
 
 
 
