@@ -48,11 +48,9 @@ function arrayIntegerNotThere(arr) {
 // [1,4,4,4,2,2,4,4,4] -> [1,4,2]
 //
 var arrayDuplicateIntegers = [1,4,4,4,2,2,4,4,4];
-var noDuplicateIntegers = [];
 
 function loopOriginalArray (arr) {
   var noDuplicateIntegers = [];
-
   noDuplicateIntegers.push(arrayDuplicateIntegers[0]);
   for (var i=0; i < arrayDuplicateIntegers.length; i++) {
     if (noDuplicateIntegers.indexOf(arrayDuplicateIntegers[i]) === -1) {
@@ -101,9 +99,6 @@ function toEnglish(arr) {
 }
 toEnglish(pigLatinStringToArray);
 // console.log(newStringToEnglish.join(' '));
-
-
-
 // (source: https://adriann.github.io/programming_problems.html)
 
 
@@ -139,37 +134,11 @@ function loopCheck(arr1, arr2) {
        return false;
       }
     }
-  }
-  else {
-    return false;
-  }
-  return true;
+  } return false;
 }
 
+// console.log(loopCheck(array1ToPass, array2ToPass));
 
-
-console.log(loopCheck(array1ToPass, array2ToPass));
-// console.log(arr1Loop(array1ToPass, array2ToPass));
-
-var array1ToPass = [];
-var array2ToPass = [];
-function arrayCompare(arr1, arr2) {
-  if (arr1.length === arr2.length) {
-    arr1.map(function(element){
-      if (arr2.includes(element)) {
-      return true;
-      } else {
-      return false;
-  }
-});
-}
-else {
-  return false;
-}
-}
-// console.log(arrayCompare(array1ToPass, array2ToPass));
-
-// console.log(arrayCompare(array1ToPass, array2ToPass))
 
 
 
@@ -211,9 +180,6 @@ function maxCutoff(arr, int) {
 // -> [1, 1, 24, 63, 45, 84, 17, 11, 59, 13] (bad - duplicated number)
 //
 
-
-
-
 function tenRandom () {
   var tenArray =[];
   while (tenArray.length < 10) {
@@ -238,11 +204,11 @@ function tenRandom () {
 
 // 9. Write a function which takes two sorted lists and merges them into a new sorted list.
 //
+
 function sortLists(arr1, arr2) {
   var combinedArray = arr1.concat(arr2).sort(function(a,b) {return a-b;});
   return combinedArray;
 }
-
 
 // console.log(sortLists([1,2,5,6,9], [3,4,5,10]));
 
@@ -282,8 +248,6 @@ function arrayTransfer (arr1, arr2) {
   else if (arr1.length > arr2.length) {
     newArray = arr2.splice(0);
     loopForTransfer(newArray, arr1);
-  } else {
-    return;
   }
 }
 function loopForTransfer(smaller, larger) {
@@ -318,23 +282,18 @@ arrayTransfer(numbers, animals);
 //
 function randomNumberConversion() {
   var randomNumber = Math.random().toString().split('');
-  for ( var i=0; i < randomNumber; i++ ) {
-    if (randomNumber[i] === 3) {
-    randomNumber.splice(i,1,'8');
-      console.log(splicedNumber);
+  for ( var i=0; i < randomNumber.length; i++ ) {
+    if (randomNumber[i] === "3") {
+    randomNumber.splice(i,1,"8");
     }
-    else if (randomNumber[i] === 7) {
-    randomNumber.splice(i,1,'1');
-      console.log(splicedNumber);
+    else if (randomNumber[i] === "7") {
+    randomNumber.splice(i,1,"1")
     }
   }
-  randomNumber.join('');
-  console.log(randomNumber);
-  return Number(randomNumber);
+  var output = randomNumber.join("");
+  return Number(output);
 
 }
-
-// randomNumberConversion();
 
 
 // console.log(randomNumberConversion());
@@ -356,6 +315,11 @@ function randomNumberConversion() {
 // array to string
 // return
 //
+
+
+
+
+
 
 function longestWord(str) {
   return str.split(' ').sort(function(a,b){
@@ -419,6 +383,11 @@ function dateDiff(first, second){
 
 // console.log(dateDiff(dateParse(firstDate), dateParse(secondDate)));
 
+
+
+
+
+
 //
 // 15. Write a function called `add` that adds two numbers together, and returns the result. The function must be defined such that it can be called in two different ways to achieve the same result. See the example below:
 //
@@ -447,9 +416,8 @@ var addEachOther = add(5);
 function wholeNumberCheck(int) {
   if ((int >= 0) && (int % 1 === 0) && (typeof int === 'number')) {
   return true;
-  } else {
-  return false;
   }
+  return false;
 }
 
 // console.log(wholeNumberCheck(3));
